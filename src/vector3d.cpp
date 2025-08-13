@@ -1,22 +1,22 @@
 #include <iostream>
 #include "vector3d.h"
-/*
+
 std::istream &operator>>(std::istream &in, Vector3D &v)
 {
     double myvar;
-    // Ввод элементов матрицы
-    std::cout << "Let's fill in the matrix A, you created" << std::endl;
+    // Ввод элементов 
+    std::cout << "Let's fill in the vector, you created" << std::endl;
 
-    // организуем вложенный цикл для поэлементного ввода элементов
+    // организуем цикл для поэлементного ввода элементов
     for (int i = 0; i < v.n_; ++i)
     {
         std::cout << "Enter element v(" << i << " ):" << std::endl;
         in >> myvar;
         // допишем введенный элемент в конец вектора
-        //v.n_.push_back(myvar);
+        v.coords_.push_back(myvar);
     }
     return in; // TODO: insert return statement here
-}*/
+}
 
 //функция доступа к элементам вектора
 double &Vector3D::operator()(int row)
@@ -38,4 +38,7 @@ void Vector3D::print()
         
     }
     std::cout << std::endl;
+
+//Rjycnhernjh gthtvtotybz   
+
 };

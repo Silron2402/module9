@@ -18,14 +18,22 @@ public:
     // Конструктор с параметрами
     Vector3D(int n) : n_(n), coords_(std::vector<double>(n)) {};
 
+    //Конструктор копирования
+    Vector3D(const Vector3D &vec)
+    {
+        n_ = vec.n_;
+        coords_ = vec.coords_;    
+    }    
+
     // Деструктор
     ~Vector3D() { std::cout<<"Item destroyed\n"; }
 
     // перегрузка оператора доступа к элементам матрицы
     double &operator()(int row); // возврат значения по ссылке (знак &)
-
+    
+    //Метод для вывод аэлементов матрицы
     void print();
 
     // перегрузка операции ввода элементов вектора
-    // friend std::istream &operator>>(std::istream &in, Vector3D &v);
+    friend std::istream &operator>>(std::istream &in, Vector3D &v);
 };

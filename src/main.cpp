@@ -14,5 +14,12 @@ int main()
               << "vector v1 is: " << std::endl;
     v1.print();
 
+    Vector3D v2{v1};
+
+    // выведем вектор v2с помощью метода print
+    std::cout << std::endl
+              << "vector v2 is: " << std::endl;
+    v2.print();
+
     return 0;
 }
