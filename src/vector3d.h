@@ -14,5 +14,15 @@ private:
 public:
     // Конструктор без параметров
     Vector3D() {}
-    
+
+    //Конструктор с параметрами
+    Vector3D(int n) : n_(n), coords_(std::vector<double>(n)) {};
+
+    //перегрузка оператора доступа к элементам матрицы
+    double& operator()(int row); // возврат значения по ссылке (знак &)
+
+    void print();
+
+    // перегрузка операции ввода элементов вектора
+    //friend std::istream &operator>>(std::istream &in, Vector3D &v);
 };
