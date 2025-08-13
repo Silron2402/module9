@@ -316,6 +316,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="E:\SKILLBOX\siplusplus\module9\src\main.cpp" />
     <ClCompile Include="E:\SKILLBOX\siplusplus\module9\src\vector3d.cpp" />
     <ClInclude Include="E:\SKILLBOX\siplusplus\module9\src\vector3d.h" />
   </ItemGroup>

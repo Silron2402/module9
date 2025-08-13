@@ -13,8 +13,11 @@ set(CMAKE_BUILD_TYPE Debug)
 add_executable(practice9)
 
 set(sources
+    src/main.cpp    
+
     src/vector3d.cpp
     src/vector3d.h
+
     
 )
 

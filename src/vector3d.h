@@ -9,6 +9,7 @@ class Vector3D
 private:
     // Объявим закрытые переменные класса
     std::vector<double> coords_;
+    int n_; //номер элемента 
 
 public:
     // Конструктор без параметров
