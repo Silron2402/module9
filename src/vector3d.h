@@ -25,6 +25,16 @@ public:
         coords_ = vec.coords_;    
     }    
 
+    //Конструктор перемещения
+    Vector3D(Vector3D&& moved) // ссылка rvalue
+    {
+    // код конструктора перемещения
+        coords_ = moved.coords_;  // перемещаем вектор
+        n_ = moved.n_;  // перемещаем число элементов
+        moved.coords_.clear();
+        moved.n_ = 0;
+    }
+
     // Деструктор
     ~Vector3D() { std::cout<<"Item destroyed\n"; }
 
@@ -36,4 +46,8 @@ public:
 
     // перегрузка операции ввода элементов вектора
     friend std::istream &operator>>(std::istream &in, Vector3D &v);
+
+    //перегрузка оператора присваивания копированием
+    Vector3D& operator= (const Vector3D &other);
+
 };

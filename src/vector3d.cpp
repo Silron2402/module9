@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vector3d.h"
+#include <memory>
 
 std::istream &operator>>(std::istream &in, Vector3D &v)
 {
@@ -15,13 +16,12 @@ std::istream &operator>>(std::istream &in, Vector3D &v)
         // допишем введенный элемент в конец вектора
         v.coords_.push_back(myvar);
     }
-    return in; // TODO: insert return statement here
+    return in;
 }
 
 //функция доступа к элементам вектора
 double &Vector3D::operator()(int row)
 {
-    // TODO: insert return statement here
     if (row > this->n_)
     {
         std::cerr << "Vector: element number is out of bounds" << std::endl;
@@ -38,7 +38,26 @@ void Vector3D::print()
         
     }
     std::cout << std::endl;
+}
 
-//Rjycnhernjh gthtvtotybz   
+// Оператор присваивания копированием
+Vector3D &Vector3D::operator=(const Vector3D &vect)
+{
+    // проверка самоприсваивания
+    if (&vect == this)
+        return *this;
+    // 
+    this->coords_ = vect.coords_;
 
+    return *this;
 };
+/*
+const A& operator=(const A& other)
+{
+   if(this == &other) return *this;
+   A my_tmp_a(other._size);
+   std::copy(&other[0], &other[other._size], &my_tmp_a[0]); 
+   swap(my_tmp_a);       
+   return *this;
+}
+*/
