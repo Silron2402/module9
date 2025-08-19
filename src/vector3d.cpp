@@ -39,7 +39,6 @@ void Vector3D::print()
     }
     std::cout << std::endl;
 }
-
 // Оператор присваивания копированием
 Vector3D &Vector3D::operator=(const Vector3D &vect)
 {
@@ -50,7 +49,39 @@ Vector3D &Vector3D::operator=(const Vector3D &vect)
     this->coords_ = vect.coords_;
 
     return *this;
-};
+}
+/*
+Vector3D &Vector3D::operator=(Vector3D &&moved)
+{
+    if (&moved != this) // избегаем самоприсваивания
+    {
+    //протестируем  перемещение
+    std::unique_ptr<Vector3D> new_v(new Vector3D(moved.n_)); //выделим память
+    *new_v = std::move(moved);
+    return *new_v; 
+    }
+
+    return *this;
+};*/
+ 
+std::ostream &operator<<(std::ostream &out, const Vector3D &v)
+{
+    out << "[ ";
+    
+    for (int i = 0; i < v.n_; ++i)
+    {
+        out << v.coords_.at(i) << " ";
+    }    
+    
+    out << "]";
+
+    out << std::endl;
+    
+    return out;
+}
+
+
+
 /*
 const A& operator=(const A& other)
 {
