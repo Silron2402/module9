@@ -60,8 +60,15 @@ int main()
     v6 = std::move(v5);
     std::cout << *v6 << std::endl;
 
-    //Vector3D v7 = Vector3D(std::move(v4));
+    //Выделяем Vector3D 
+    Vector3D *v7 = new Vector3D(3);
+    //Передаем указатель на него в std::shared_ptr и обозначаем как ptr1
+    std::shared_ptr<Vector3D> ptr1(v7);
+    //сформируем второй указатель ptr2. выполним копирующую инициализацию на базе prt1
+    std::shared_ptr<Vector3D> ptr2(ptr1);
 
+    std::cout << *ptr1 << std::endl;
+    std::cout << *ptr2 << std::endl;
 
     return 0;
 

@@ -13,7 +13,8 @@ private:
 
 public:
     // Конструктор без параметров
-    Vector3D() {
+    Vector3D()
+    {
         std::cout << "Created empty vector " << std::endl;
     }
 
