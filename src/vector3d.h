@@ -10,17 +10,18 @@ private:
     // Объявим закрытые переменные класса
     std::vector<double> coords_;
     int n_; // номер элемента
+    //std::unique_ptr<Vector3D> ptr;
 
 public:
     // Конструктор без параметров
     Vector3D()
     {
-        std::cout << "Created empty vector " << std::endl;
+        std::cout << "Created an empty vector " << std::endl;
     }
 
     // Конструктор с параметрами
     Vector3D(int n) : n_(n), coords_(std::vector<double>(n)) {
-        std::cout << "Created vector with parameters " << std::endl;
+        std::cout << "Created a vector with parameters " << std::endl;
     };
 
     //Конструктор копирования
@@ -28,7 +29,7 @@ public:
     {
         n_ = vec.n_;
         coords_ = vec.coords_; 
-        std::cout << "Created copied vector " << std::endl;   
+        std::cout << "Created a copied vector " << std::endl;   
     }    
 /*
     //Конструктор перемещения
