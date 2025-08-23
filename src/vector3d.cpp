@@ -53,25 +53,20 @@ Vector3D &Vector3D::operator=(const Vector3D &vect)
 
     return *this;
 }
-
-Vector3D &Vector3D::operator=(Vector3D &&moved)
-{
-    // TODO: insert return statement here
-}
+*/
 
 Vector3D &Vector3D::operator=(Vector3D &&moved) noexcept
 {
     if (&moved != this) // избегаем самоприсваивания
     {
-    //протестируем  перемещение
-    std::unique_ptr<Vector3D> new_v(new Vector3D(moved.n_)); //выделим память
-    *new_v = std::move(moved);
-    return *new_v;
+        coords_ = std::move(moved.coords_);
+        n_ = std::move(moved.n_);
+        return *this;
     }
 
     return *this;
 };
- */
+
 std::ostream &operator<<(std::ostream &out, const Vector3D &v)
 {
     out << "[ ";

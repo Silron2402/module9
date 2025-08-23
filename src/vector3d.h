@@ -34,13 +34,13 @@ public:
         coords_ = vec.coords_;
         std::cout << "Called a copy constructor" << std::endl;
     }
-
+/*
     // Конструктор перемещения
-//    Vector3D(Vector3D &&moved) : coords_(std::move(moved.coords_))// ссылка rvalue
-//    {
-        // код конструктора перемещения
-//        v_ = std::move(moved.v_);  // перемещаем вектор
-//        //n_ = moved.n_; // перемещаем число элементов
+    Vector3D(Vector3D &&moved) : coords_(nullptr) , n_(0) , // ссылка rvalue
+    {
+    // код конструктора перемещения
+      v_ = std::move(moved.v_);  // перемещаем вектор
+      //n_ = moved.n_; // перемещаем число элементов
 //        v_ = nullptr;
 //        std::cout << "Called a move constructor" << std::endl;
   //  }
@@ -63,6 +63,6 @@ public:
     // перегрузка операции вывода
     friend std::ostream &operator<<(std::ostream &out, const Vector3D &v);
 
-    //Vector3D& operator= (Vector3D&& moved);
+    Vector3D& operator= (Vector3D&& moved);
 
 };
