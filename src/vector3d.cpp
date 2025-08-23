@@ -1,7 +1,7 @@
 #include <iostream>
 #include "vector3d.h"
 #include <memory>
-
+/*
 std::istream &operator>>(std::istream &in, Vector3D &v)
 {
     double myvar;
@@ -17,7 +17,7 @@ std::istream &operator>>(std::istream &in, Vector3D &v)
         v.coords_.push_back(myvar);
     }
     return in;
-}
+}*/
 
 //функция доступа к элементам вектора
 double &Vector3D::operator()(int row)
@@ -28,17 +28,20 @@ double &Vector3D::operator()(int row)
     };
     return this->coords_.at(row); // неявный указатель this принадлежности к классу
 }
-
+/*
 // Функция, предназначенная для вывода вектора в консоль
 void Vector3D::print()
 {
+    
     for (int i = 0; i < this->n_; ++i)
     {
         std::cout << this->coords_.at(i) << " ";
         
     }
-    std::cout << std::endl;
+    std::cout << std::make_unique<Vector3D>(this) << std::endl;
 }
+
+
 // Оператор присваивания копированием
 Vector3D &Vector3D::operator=(const Vector3D &vect)
 {
@@ -50,20 +53,25 @@ Vector3D &Vector3D::operator=(const Vector3D &vect)
 
     return *this;
 }
-/*
+
 Vector3D &Vector3D::operator=(Vector3D &&moved)
+{
+    // TODO: insert return statement here
+}
+
+Vector3D &Vector3D::operator=(Vector3D &&moved) noexcept
 {
     if (&moved != this) // избегаем самоприсваивания
     {
     //протестируем  перемещение
     std::unique_ptr<Vector3D> new_v(new Vector3D(moved.n_)); //выделим память
     *new_v = std::move(moved);
-    return *new_v; 
+    return *new_v;
     }
 
     return *this;
-};*/
- 
+};
+ */
 std::ostream &operator<<(std::ostream &out, const Vector3D &v)
 {
     out << "[ ";

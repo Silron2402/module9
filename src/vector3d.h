@@ -8,41 +8,44 @@ class Vector3D
 {
 private:
     // Объявим закрытые переменные класса
-    std::vector<double> coords_;
-    int n_; // номер элемента
-    //std::unique_ptr<Vector3D> ptr;
+    std::vector<double> coords_; //вектор координат
+    int n_; // длина вектора
+    //std::unique_ptr<double[]> ptr_; //умный указатель на данные внутри Vector3D
 
 public:
     // Конструктор без параметров
     Vector3D()
     {
-        std::cout << "Created an empty vector " << std::endl;
+        n_ = 3;
+        coords_ = std::vector<double>(3);
+        std::cout << "Called a default constructor" << std::endl;
     }
 
     // Конструктор с параметрами
-    Vector3D(int n) : n_(n), coords_(std::vector<double>(n)) {
-        std::cout << "Created a vector with parameters " << std::endl;
+    Vector3D(int n) : n_(n), coords_(std::vector<double>(n))
+    {
+        std::cout << "Called a constructor with parameters " << std::endl;
     };
 
-    //Конструктор копирования
+    // Конструктор копирования
     Vector3D(const Vector3D &vec)
     {
         n_ = vec.n_;
-        coords_ = vec.coords_; 
-        std::cout << "Created a copied vector " << std::endl;   
-    }    
-/*
-    //Конструктор перемещения
-    Vector3D(Vector3D&& moved) // ссылка rvalue
-    {
-    // код конструктора перемещения
-        coords_ = std::unique_ptr(moved);  // перемещаем вектор
-        n_ = moved.n_;  // перемещаем число элементов
-        moved.coords_.clear();
-        moved.n_ = 0;
+        coords_ = vec.coords_;
+        std::cout << "Called a copy constructor" << std::endl;
     }
-*/
-    // Деструктор
+
+    // Конструктор перемещения
+//    Vector3D(Vector3D &&moved) : coords_(std::move(moved.coords_))// ссылка rvalue
+//    {
+        // код конструктора перемещения
+//        v_ = std::move(moved.v_);  // перемещаем вектор
+//        //n_ = moved.n_; // перемещаем число элементов
+//        v_ = nullptr;
+//        std::cout << "Called a move constructor" << std::endl;
+  //  }
+
+    // Деструктор*/
     ~Vector3D() { std::cout<<"Item destroyed\n"; }
 
     // перегрузка оператора доступа к элементам матрицы
@@ -52,7 +55,7 @@ public:
     void print();
 
     // перегрузка операции ввода элементов вектора
-    friend std::istream &operator>>(std::istream &in, Vector3D &v);
+    //friend std::istream &operator>>(std::istream &in, Vector3D &v);
 
     //перегрузка оператора присваивания копированием
     Vector3D& operator= (const Vector3D &other);
