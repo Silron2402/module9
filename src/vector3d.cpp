@@ -1,97 +1,81 @@
 #include <iostream>
 #include "vector3d.h"
 #include <memory>
-/*
-std::istream &operator>>(std::istream &in, Vector3D &v)
-{
-    double myvar;
-    // Ввод элементов 
-    std::cout << "Let's fill in the vector, you created" << std::endl;
-
-    // организуем цикл для поэлементного ввода элементов
-    for (int i = 0; i < v.n_; ++i)
-    {
-        std::cout << "Enter element v(" << i << " ):" << std::endl;
-        in >> myvar;
-        // допишем введенный элемент в конец вектора
-        v.coords_.push_back(myvar);
-    }
-    return in;
-}*/
 
 //функция доступа к элементам вектора
 double &Vector3D::operator()(int row)
 {
-    if (row > this->n_)
+    if (row > 3)
     {
         std::cerr << "Vector: element number is out of bounds" << std::endl;
     };
-    return this->coords_.at(row); // неявный указатель this принадлежности к классу
-}
-/*
-// Функция, предназначенная для вывода вектора в консоль
-void Vector3D::print()
-{
-    
-    for (int i = 0; i < this->n_; ++i)
-    {
-        std::cout << this->coords_.at(i) << " ";
-        
-    }
-    std::cout << std::make_unique<Vector3D>(this) << std::endl;
+    return coords[row]; 
 }
 
+/*
+    const double &Vector3D::operator()(in index) const {
+        if (index >= 3) {
+            std::cerr << "Vector: element number is out of bounds" << std::endl;
+        }
+        return coords[index];
+    }*/
+
+// Метод, предназначенный для вывода вектора в консоль
+void Vector3D::print()
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        std::cout << coords[i] << " ";
+    }
+    std::cout << std::endl;
+}
 
 // Оператор присваивания копированием
 Vector3D &Vector3D::operator=(const Vector3D &vect)
 {
-    // проверка самоприсваивания
-    if (&vect == this)
-        return *this;
-    // 
-    this->coords_ = vect.coords_;
-
+    // проверка отсутствия самоприсваивания
+    if (&vect != this)
+        for (int i = 0; i < 3; ++i)
+        {
+            this->coords[i] = vect.coords[i];
+        }
     return *this;
 }
-*/
-
-Vector3D &Vector3D::operator=(Vector3D &&moved) noexcept
+//Оператор присваивания перемещением
+Vector3D &Vector3D::operator=(Vector3D&& moved) //noexcept
 {
     if (&moved != this) // избегаем самоприсваивания
     {
-        coords_ = std::move(moved.coords_);
-        n_ = std::move(moved.n_);
-        return *this;
+        coords = nullptr;
+        coords = std::move(moved.coords);
+        moved.coords = nullptr;
     }
-
     return *this;
-};
+}
+
+double Vector3D::length() {
+        return std::sqrt(coords[0] * coords[0] + 
+                        coords[1] * coords[1] + 
+                        coords[2] * coords[2]);
+    }
 
 std::ostream &operator<<(std::ostream &out, const Vector3D &v)
 {
-    out << "[ ";
-    
-    for (int i = 0; i < v.n_; ++i)
+    if (v.coords) //проверим существует ли указатель
     {
-        out << v.coords_.at(i) << " ";
-    }    
-    
-    out << "]";
+        out << "[ ";
 
-    out << std::endl;
-    
+        for (int i = 0; i < 3; ++i)
+        {
+            out << v.coords[i] << " ";
+        }
+
+        out << "]";
+
+        out << std::endl;
+
+        return out;
+    }
+    out << "this vector does not exist";
     return out;
 }
-
-
-
-/*
-const A& operator=(const A& other)
-{
-   if(this == &other) return *this;
-   A my_tmp_a(other._size);
-   std::copy(&other[0], &other[other._size], &my_tmp_a[0]); 
-   swap(my_tmp_a);       
-   return *this;
-}
-*/
